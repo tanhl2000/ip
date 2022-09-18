@@ -46,7 +46,7 @@ public class Duke {
     
     /** 
      * main function to start the chatbot when file is ran
-     * @param args
+     * @param args arguments from CLI
      */
     public static void main(String[] args) {
         Duke bot = new Duke();

@@ -34,7 +34,7 @@ public class Storage {
      * loadLog loads the tasks stored in the log file into the curren tasklist, 
      * throws DukeExceptions if theres issues with the format of the log file or file address is invalid
      * @return TaskList
-     * @throws DukeException
+     * @throws DukeException Main exception class that is extended by the various custom exceptions
      */
     public TaskList loadLog() throws DukeException{
         try {
@@ -66,7 +66,8 @@ public class Storage {
 
     
     /** 
-     * @throws DukeException
+     * Saves the current tasklist configuration into the log file
+     * @throws DukeException Main exception class that is extended by the various custom exceptions
      */
     public void cleanUp() throws DukeException {
         if (existingTasks.getSize() == 0) {
@@ -89,12 +90,16 @@ public class Storage {
 
     
     /** 
-     * @param numOfTasks
+     * Shows to the user that the tasks have been saved
+     * @param numOfTasks integer value of the number of tasks in the tasklist
      */
     public void sendEndMessage(int numOfTasks) {
         this.ui.chat(String.format("Saved %d tasks to log file\n", numOfTasks));
     }
 
+    /**
+     * Shows to the user that nothing was saved to the log file
+     */
     public void sendNoTasksMessage() {
         this.ui.chat("No tasks saved to log file \n");
     }

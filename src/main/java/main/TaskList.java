@@ -44,7 +44,7 @@ public class TaskList {
     
     /** 
      * adds a task into the back of the tasklist
-     * @param newTask
+     * @param newTask task to be added to tasklist
      */
     public void add(Task newTask) {
         this.tasks.add(newTask);
@@ -55,7 +55,7 @@ public class TaskList {
     /** 
      * deletes the task at the specified index in the tasklist, throws TaskListOutOfBoundsException if index is out of bounds
      * @param pos
-     * @throws TaskListOutOfBoundsException
+     * @throws TaskListOutOfBoundsException index out of bounds error
      */
     public void delete(int pos) throws TaskListOutOfBoundsException{
         if (pos > this.getSize()) {
@@ -70,7 +70,7 @@ public class TaskList {
      * returns the task at the specified index in the tasklist, throws TaskListOutOfBoundsException if index is out of bounds
      * @param pos
      * @return Task
-     * @throws TaskListOutOfBoundsException
+     * @throws TaskListOutOfBoundsException index out of bounds error
      */
     public Task get(int pos) throws TaskListOutOfBoundsException{
         if (pos > this.getSize()) {
@@ -83,7 +83,7 @@ public class TaskList {
     /** 
      * marks the task at the specified index in the tasklist as done, throws TaskListOutOfBoundsException if index is out of bounds
      * @param pos
-     * @throws TaskListOutOfBoundsException
+     * @throws TaskListOutOfBoundsException index out of bounds error
      */
     public void mark(int pos) throws TaskListOutOfBoundsException{
         if (pos > this.getSize()) {
@@ -96,7 +96,7 @@ public class TaskList {
     /** 
      * marks the task at the specified index in the tasklist as not done, throws TaskListOutOfBoundsException if index is out of bounds
      * @param pos
-     * @throws TaskListOutOfBoundsException
+     * @throws TaskListOutOfBoundsException index out of bounds error
      */
     public void unmark(int pos) throws TaskListOutOfBoundsException{
         if (pos > this.getSize()) {

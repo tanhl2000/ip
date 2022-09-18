@@ -47,10 +47,10 @@ public class DeadlineCommand extends Command {
     /** 
      * Executes the functionality of the command, in the tasklist, UI and storage that are taken in as arguments,
      *  in this case adds the deadline task described by the user into the tasklist
-     * @param tasks
-     * @param ui
-     * @param storage
-     * @throws DukeException
+     * @param tasks the tasklist of tasks from the chatbot instance
+     * @param ui the ui from the chatbot instance
+     * @param storage the storage from the chatbot instance
+     * @throws DukeException Main exception class that is extended by the various custom exceptions
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
         try {
@@ -66,7 +66,7 @@ public class DeadlineCommand extends Command {
     /** 
      * Returns the task that will be generated from the command, returns an empty task if no task is to be generated
      * @return Task
-     * @throws DukeException
+     * @throws DukeException Main exception class that is extended by the various custom exceptions
      */
     @Override
     public Task getTask() throws DukeException{

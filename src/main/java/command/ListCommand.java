@@ -25,9 +25,9 @@ public class ListCommand extends Command {
     /** 
      * Executes the functionality of the command, in the tasklist, UI and storage that are taken in as arguments, 
      * in this case it lists all tasks in the tasklist
-     * @param tasks
-     * @param ui
-     * @param storage
+     * @param tasks the tasklist of tasks from the chatbot instance
+     * @param ui the ui from the chatbot instance
+     * @param storage the storage from the chatbot instance
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.list(tasks);

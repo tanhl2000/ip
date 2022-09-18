@@ -26,10 +26,10 @@ public class LoadCommand extends Command{
     /** 
      * Executes the functionality of the command, in the tasklist, UI and storage that are taken in as arguments, 
      * in this case it loads the tasks from a chatbot log file into the current chatbots tasklist
-     * @param tasks
-     * @param ui
-     * @param storage
-     * @throws DukeException
+     * @param tasks the tasklist of tasks from the chatbot instance
+     * @param ui the ui from the chatbot instance
+     * @param storage the storage from the chatbot instance
+     * @throws DukeException Main exception class that is extended by the various custom exceptions
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
         try {

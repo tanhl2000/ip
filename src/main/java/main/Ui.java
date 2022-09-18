@@ -27,7 +27,7 @@ public class Ui {
     /** 
      * Shows a list of the tasks the chatbot holds to the user in tasklist index order, 
      * indicates the task type, done or not done, task description and task date
-     * @param tasks
+     * @param tasks the tasklist
      */
     public void list(TaskList tasks) {
         this.chat(tasks.toString());
@@ -36,7 +36,7 @@ public class Ui {
     
     /** 
      * Shows the new task that was added to the user, indicates the task type, task description and task date
-     * @param newTask
+     * @param newTask task to be added to tasklist
      */
     public void add(Task newTask) {
         this.chat(String.format("%s%s", addMessage, newTask));
@@ -45,8 +45,8 @@ public class Ui {
     
     /** 
      * Shows the task that was deleted to the user, indicates the task type, task description and task date
-     * @param pos
-     * @throws DukeException
+     * @param pos index of task to be deleted
+     * @throws DukeException Main exception class that is extended by the various custom exceptions
      */
     public void delete(int pos) throws DukeException{
         try {
@@ -59,8 +59,8 @@ public class Ui {
     
     /** 
      * Shows the task that was marked done to the user, indicates the task type, done or not done, task description and task date
-     * @param pos
-     * @throws DukeException
+     * @param pos index of task to be marked done
+     * @throws DukeException Main exception class that is extended by the various custom exceptions
      */
     public void mark(int pos) throws DukeException {
         try {
@@ -73,8 +73,8 @@ public class Ui {
     
     /** 
      * Shows the task that was marked not done to the user, indicates the task type, done or not done, task description and task date
-     * @param pos
-     * @throws DukeException
+     * @param pos index of task to be marked not done
+     * @throws DukeException Main exception class that is extended by the various custom exceptions
      */
     public void unmark(int pos) throws DukeException {
         try {
@@ -87,7 +87,7 @@ public class Ui {
     
     /** 
      * Shows the error messages from exceptions
-     * @param e
+     * @param e exception thrown
      */
     public void errorMessage(DukeException e) {
         this.chat(e.getLocalizedMessage());
@@ -103,7 +103,8 @@ public class Ui {
 
     
     /** 
-     * @param message
+     * Shows a message to the user
+     * @param message String representation of the message to be shown
      */
     public void chat(String message) {
         System.out.println(UI_LINE_SPACING + "\n" + message + "\n" + UI_LINE_SPACING);

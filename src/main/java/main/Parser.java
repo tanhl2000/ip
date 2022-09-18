@@ -31,9 +31,9 @@ public class Parser {
     
     /** 
      * Parses a given userinput into the respective commands, throws InvalidCommandException when user gives invalid commands
-     * @param userCommand
+     * @param userCommand String representation of the userinputs
      * @return Command
-     * @throws InvalidCommandException
+     * @throws InvalidCommandException Exception thrown when user inputs an invalid command
      */
     public Command parse(String userCommand) throws InvalidCommandException {
 
@@ -85,8 +85,8 @@ public class Parser {
     
     /** 
      * Parses the arguments of the user inputted commands
-     * @param delimiter
-     * @param args
+     * @param delimiter String representation of user input by which to split the String with
+     * @param args String representation of arguments from the user input
      * @return String[]
      */
     public String[] parseCommandArgs(String delimiter, String args) {
