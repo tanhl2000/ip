@@ -20,6 +20,10 @@ public class Meower {
      * Process user inputs and generate the corresponding commands and ui events
      */
     public String processUserInput(String userInput) {
+        assert tasks != null: "tasklist cannot be null";
+        assert parser != null: "parser cannot be null";
+        assert ui != null: "ui cannot be null";
+        assert storage != null: "storage cannot be null";
         try {
             Command nextCommand = parser.parse(userInput);
             return nextCommand.execute(this.tasks, this.ui, this.storage);
