@@ -1,4 +1,4 @@
-package main;
+package duke;
 
 import command.ByeCommand;
 import command.Command;
