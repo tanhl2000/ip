@@ -9,7 +9,7 @@ import main.Ui;
 import task.Event;
 import task.Task;
 
-public class EventCommand extends Command{
+public class EventCommand extends Command {
 
     private String description;
     private String duration;
@@ -48,7 +48,7 @@ public class EventCommand extends Command{
      * @param storage
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             Task newEvent = this.getTask();
             tasks.add(newEvent);
@@ -65,7 +65,7 @@ public class EventCommand extends Command{
      * @throws DukeException
      */
     @Override
-    public Task getTask() throws DukeException{
+    public Task getTask() throws DukeException {
         try {
             return new Event(description, duration);
         } catch (MissingArgumentException e) {

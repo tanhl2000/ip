@@ -52,7 +52,7 @@ public class DeadlineCommand extends Command {
      * @param storage
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             Task newDeadline = this.getTask();
             tasks.add(newDeadline);
@@ -69,7 +69,7 @@ public class DeadlineCommand extends Command {
      * @throws DukeException
      */
     @Override
-    public Task getTask() throws DukeException{
+    public Task getTask() throws DukeException {
         try {
             return new Deadline(description, date);
         } catch (MissingArgumentException e) {

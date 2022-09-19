@@ -12,7 +12,7 @@ import task.Task;
  * @extends Command
  */
 
-public class ByeCommand extends Command{
+public class ByeCommand extends Command {
 
     private String logFileAddress = "";
     
@@ -42,7 +42,7 @@ public class ByeCommand extends Command{
      * @param storage
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (!this.verifyAddress(this.logFileAddress)) {
             throw new DukeFileAddressInvalidException("User file address invalid, please check pathing");
         }
