@@ -1,15 +1,15 @@
 package command;
 
-import exception.DukeException;
+import exception.MeowerException;
 import exception.InvalidDateException;
 import exception.MissingArgumentException;
-import main.Storage;
-import main.TaskList;
-import main.Ui;
+import meower.Storage;
+import meower.TaskList;
+import meower.Ui;
 import task.Event;
 import task.Task;
 
-public class EventCommand extends Command{
+public class EventCommand extends Command {
 
     private String description;
     private String duration;
@@ -19,41 +19,21 @@ public class EventCommand extends Command{
         this.description = description;
         this.duration = duration;
     }
-
-    
-    /** 
-     * Returns description inputted by the user
-     * @return String
-     */
-    public String getDescription() {
-        return this.description;
-    }
-
-    
-    /** 
-     * Checks if command will cause chatbot to end
-     * @return boolean
-     */
-    @Override
-    public boolean isEnd() {
-        return false;
-    }
-
     
     /** 
      * Executes the functionality of the command, in the tasklist, UI and storage that are taken in as arguments, 
      * in this case adds the event task described by the user into the tasklist
-     * @param tasks the tasklist of tasks from the chatbot instance
-     * @param ui the ui from the chatbot instance
-     * @param storage the storage from the chatbot instance
-     * @throws DukeException Main exception class that is extended by the various custom exceptions
+     * @param tasks tasklist from Meower chatbot
+     * @param ui ui from Meower chatbot
+     * @param storage storage from Meower chatbot
+     * @throws MeowerException Main Meower chatbot Exception
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
         try {
             Task newEvent = this.getTask();
             tasks.add(newEvent);
-            ui.add(newEvent);
-        } catch (DukeException e) {
+            return ui.add(newEvent);
+        } catch (MeowerException e) {
             throw e;
         }
     }
@@ -62,16 +42,16 @@ public class EventCommand extends Command{
     /** 
      * Returns the task that will be generated from the command, returns an empty task if no task is to be generated
      * @return Task
-     * @throws DukeException Main exception class that is extended by the various custom exceptions
+     * @throws MeowerException Main Meower chatbot Exception
      */
     @Override
-    public Task getTask() throws DukeException{
+    public Task getTask() throws MeowerException {
         try {
             return new Event(description, duration);
         } catch (MissingArgumentException e) {
-            throw new DukeException(e.getLocalizedMessage());
+            throw new MeowerException(e.getLocalizedMessage());
         } catch (InvalidDateException e) {
-            throw new DukeException(e.getLocalizedMessage());
+            throw new MeowerException(e.getLocalizedMessage());
         }
     }
 }

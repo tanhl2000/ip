@@ -1,9 +1,10 @@
 package command;
 
-import exception.DukeException;
-import main.Storage;
-import main.TaskList;
-import main.Ui;
+import exception.MeowerException;
+import exception.MeowerFileAddressInvalidException;
+import meower.Storage;
+import meower.TaskList;
+import meower.Ui;
 import task.Task;
 
 /**
@@ -11,38 +12,66 @@ import task.Task;
  * @extends Command
  */
 
-public class ByeCommand extends Command{
+public class ByeCommand extends Command {
+
+    private final String MESSAGE_FILE_ADDRESS_ERROR = "User file address invalid, please check pathing";
+
+    private String logFileAddress = "";
+    private Ui ui;
     
     public ByeCommand() {
     }
 
-    
-    /** 
-     * Checks if command will cause chatbot to end.
-     * @return boolean
-     */
-    @Override
-    public boolean isEnd() {
-        return true;
+    public ByeCommand(String newAddress) {
+        this.logFileAddress = newAddress;
     }
-
-    
+ 
     /** 
      * Executes the functionality of the command, in the tasklist, 
      * UI and storage that are taken in as arguments, in this case saves the chatbot logs
-     * @param tasks the tasklist of tasks from the chatbot instance
-     * @param ui the ui from the chatbot instance
-     * @param storage the storage from the chatbot instance
-     * @throws DukeException Main exception class that is extended by the various custom exceptions
+     * @param tasks tasklist from Meower chatbot
+     * @param ui ui from Meower chatbot
+     * @param storage storage from Meower chatbot
+     * @throws MeowerException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException {
+        //if not a valid address, throw exception
+        if (!this.verifyAddress(this.logFileAddress)) {
+            throw new MeowerFileAddressInvalidException(MESSAGE_FILE_ADDRESS_ERROR);
+        }
+
+        //else, do cleanUp()
         try {
-            storage.cleanUp();
-        } catch (DukeException e) {
+            if (this.logFileAddress.equals("")) {
+                return ui.bye(storage.cleanUp());
+            } else {
+                return ui.bye(storage.cleanUp(this.logFileAddress));
+            }
+        } catch (MeowerException e) {
             throw e;
         }
     }
 
+    /** 
+     * verify if user given file address is valid
+     * @param address file path address given by user
+     * @return boolean
+     */
+
+    private boolean verifyAddress(String address) {
+        //pre-process address string
+        String addressToCheck = address.strip();
+        String[] addressSplit = addressToCheck.split(" ");
+
+        //verification
+        if (addressSplit.length > 1) {
+            return false;
+        }
+        if (address.equals("")) {
+            return false;
+        }
+        return true;
+    }
     
     /** 
      * Returns the task that will be generated from the command, returns an empty task if no task is to be generated

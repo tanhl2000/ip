@@ -6,6 +6,9 @@ import java.time.format.DateTimeParseException;
 import exception.InvalidDateException;
 
 public class Task {
+    private final String MESSAGE_ERROR_PAST_DATE = "Date should be a future date, not one in the past";
+    private final String MESSAGE_ERROR_WRONG_FORMAT = "Date is formatted wrongly";
+
     protected DateTimeFormatter inputDateFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
     protected DateTimeFormatter outputDateFormatter = DateTimeFormatter.ofPattern("E, d MMM yyyy");
     protected String type;
@@ -50,7 +53,7 @@ public class Task {
 
     
     /** 
-     * Returns an empty task
+     * returns an empty task
      * @return Task
      */
     public static Task empty() {
@@ -59,7 +62,7 @@ public class Task {
 
     
     /** 
-     * Returns true if it is an empty task, false otherwise
+     * checks if task is empty, returns true if empty and false if not
      * @return boolean
      */
     public boolean isEmpty() {
@@ -68,7 +71,7 @@ public class Task {
 
     
     /** 
-     * Returns the task description
+     * returns description of task
      * @return String
      */
     public String getDescription() {
@@ -76,14 +79,14 @@ public class Task {
     }
 
     /**
-     * Mark task done
+     * marks the task done
      */
     public void mark() {
         this.isDone = true;
     }
 
     /**
-     * Mark task not done
+     * marks the task not done
      */
     public void unmark() {
         this.isDone = false;
@@ -91,7 +94,7 @@ public class Task {
 
     
     /** 
-     * Return log format of the task
+     * returns the log file format String to save this task to the log file
      * @return String
      */
     public String log() {
@@ -115,27 +118,27 @@ public class Task {
 
     
     /** 
-     * Convert String date to LocalDate type
-     * @param date String representation of date field of task
+     * converts dates of specified format to LocalDate type
+     * @param date String representation of a date
      * @return LocalDate
-     * @throws InvalidDateException Exception thrown when user inputs an invalid or non-date date format
+     * @throws InvalidDateException thrown when an invalid or non-date format is given 
      */
     public LocalDate convert(String date) throws InvalidDateException { //assumes format is in d/M/yyyy
         try {
             LocalDate currentDate = LocalDate.now();
             LocalDate taskDate = LocalDate.parse(date, inputDateFormatter);
             if (taskDate.isBefore(currentDate)) {
-                throw new InvalidDateException("Date should be a future date, not one in the past");
+                throw new InvalidDateException(MESSAGE_ERROR_PAST_DATE);
             }
             return taskDate;
         } catch (DateTimeParseException e) {
-            throw new InvalidDateException("Date is formatted wrongly");
+            throw new InvalidDateException(MESSAGE_ERROR_WRONG_FORMAT);
         }
     }
 
     
     /** 
-     * Returns string representation of the task
+     * returns the string representation of tasks
      * @return String
      */
     @Override

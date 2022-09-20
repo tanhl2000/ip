@@ -1,44 +1,42 @@
 package command;
 
-import exception.DukeException;
-import main.Storage;
-import main.TaskList;
-import main.Ui;
+import exception.MeowerException;
+import meower.Storage;
+import meower.TaskList;
+import meower.Ui;
 import task.Task;
 
 public class LoadCommand extends Command{
+
+    private String logFileAddress = "";
     
     public LoadCommand() {
         super();
     }
 
-    
-    /** 
-     * Checks if command will cause chatbot to end
-     * @return boolean
-     */
-    @Override
-    public boolean isEnd() {
-        return false;
+    public LoadCommand(String newAddress) {
+        this.logFileAddress = newAddress;
     }
-
     
     /** 
      * Executes the functionality of the command, in the tasklist, UI and storage that are taken in as arguments, 
      * in this case it loads the tasks from a chatbot log file into the current chatbots tasklist
-     * @param tasks the tasklist of tasks from the chatbot instance
-     * @param ui the ui from the chatbot instance
-     * @param storage the storage from the chatbot instance
-     * @throws DukeException Main exception class that is extended by the various custom exceptions
+     * @param tasks tasklist from Meower chatbot
+     * @param ui ui from Meower chatbot
+     * @param storage storage from Meower chatbot
+     * @throws MeowerException Main Meower chatbot Exception
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws MeowerException{
         try {
-            storage.loadLog();
-        } catch (DukeException e) {
+            if (this.logFileAddress.equals("")) {
+                return ui.load(storage.loadLog());
+            } else {
+                return ui.load(storage.loadLog(this.logFileAddress));
+            }
+        } catch (MeowerException e) {
             throw e;
         }
     }
-
     
     /** 
      * Returns the task that will be generated from the command, returns an empty task if no task is to be generated

@@ -2,7 +2,8 @@ package main;
 
 import org.junit.jupiter.api.Test;
 
-import exception.DukeException;
+import exception.MeowerException;
+import meower.TaskList;
 import task.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +16,7 @@ public class TaskListTest {
         try {
             tasks.add(testTask);
             assertEquals(tasks.get(1), testTask);
-        } catch (DukeException e) {
+        } catch (MeowerException e) {
             return;
         }
     }
@@ -39,7 +40,7 @@ public class TaskListTest {
             tasks.add(testTask);
             tasks.delete(1);
             assertEquals(tasks.isEmpty(), true);
-        } catch (DukeException e) {
+        } catch (MeowerException e) {
             return;
         }
     }
